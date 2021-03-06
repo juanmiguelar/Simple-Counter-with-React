@@ -1,24 +1,36 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 
 //create your first component
-export function Home() {
+const Home = props => {
+	const getClock = () => {
+		let resultado = "";
+		const espacios = 5;
+		const secondsString = props.seconds + "";
+		if (secondsString.length < 5) {
+			// si es menor a 5 debo agregarle ceros a la izquierda
+			while (resultado.length + secondsString.length < 5) {
+				resultado = resultado + "0";
+			}
+			resultado = resultado + secondsString;
+		}
+
+		return resultado;
+	};
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
+		<Fragment>
+			<div className="text-center mt-5 bg-dark text-light">
+				<h1 className="display-1">
+					<i className="fas fa-clock"></i> {getClock()}
+				</h1>
+			</div>
+		</Fragment>
 	);
-}
+};
+
+Home.propTypes = {
+	seconds: PropTypes.number
+};
+
+export default Home;

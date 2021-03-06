@@ -9,7 +9,12 @@ import "bootstrap";
 import "../styles/index.scss";
 
 //import your own components
-import { Home } from "./component/home.js";
+import Home from "./component/home";
 
 //render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+
+let seconds = 0;
+setInterval(() => {
+	ReactDOM.render(<Home seconds={seconds} />, document.querySelector("#app"));
+	seconds = seconds + 1;
+}, 1000);
