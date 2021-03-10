@@ -15,6 +15,7 @@ import Home from "./component/home";
 
 let seconds = 0;
 setInterval(() => {
+	console.log("Llamado " + seconds);
 	ReactDOM.render(<Home seconds={seconds} />, document.querySelector("#app"));
 	seconds = seconds + 1;
 }, 1000);
